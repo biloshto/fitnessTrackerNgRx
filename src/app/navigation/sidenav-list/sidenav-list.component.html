@@ -1,0 +1,41 @@
+<mat-nav-list>
+  <div class="img-box">
+    <a routerLink="/" (click)="onClose()">
+      <img src="../../../assets/img/logo.png" alt="Fitness Tracker">
+    </a>
+  </div>
+  <!-- <a mat-list-item routerLink="/signup" (click)="sidenav.close()"> -->
+  <!-- we could use the above approach to close the sidenav if all of its elements were in a single component, because sidenav is a local reference and can't be used from the outside -->
+  <!-- <a mat-list-item routerLink="/signup" (click)="onClose()" *ngIf="!isAuth"> -->
+  <!-- commenting this out and using the NgRx version instead -->
+  <a mat-list-item routerLink="/signup" (click)="onClose()" *ngIf="!(isAuth$ | async)">
+    <mat-icon>face</mat-icon>
+    <span class="nav-caption">Signup</span>
+  </a>
+  <mat-divider *ngIf="!(isAuth$ | async)"></mat-divider>
+  <!-- <a mat-list-item routerLink="/login" (click)="onClose()" *ngIf="!isAuth"> -->
+  <!-- commenting this out and using the NgRx version instead -->
+  <a mat-list-item routerLink="/login" (click)="onClose()" *ngIf="!(isAuth$ | async)">
+    <mat-icon>input</mat-icon>
+    <span class="nav-caption">Login</span>
+  </a>
+  <!-- the Signup and Login button should only be displayed if the user is not logged in -->
+  <!-- <a mat-list-item routerLink="/training" (click)="onClose()" *ngIf="isAuth"> -->
+  <!-- commenting this out and using the NgRx version instead -->
+   <a mat-list-item routerLink="/training" (click)="onClose()" *ngIf="isAuth$ | async">
+    <mat-icon>fitness_center</mat-icon>
+    <span class="nav-caption">Training</span>
+  </a>
+  <mat-divider *ngIf="isAuth$ | async"></mat-divider>
+  <mat-list-item>
+    <!-- <button mat-icon-button (click)="onClose()" *ngIf="isAuth"> -->
+      <!-- on click we're calling the onLogout() method instead that logs out the user and redirects them and in this method we're calling the onClose() method as well that will also close the sidebar -->
+    <!-- <button mat-icon-button (click)="onLogout()" *ngIf="isAuth"> -->
+    <!-- commenting this out and using the NgRx version instead -->
+    <button mat-icon-button (click)="onLogout()" *ngIf="isAuth$ | async">
+      <mat-icon class="reverse">input</mat-icon>
+      <span class="nav-caption">Logout</span>
+    </button>
+  </mat-list-item>
+  <!-- for the Training and Logout button the opposite is the case; should only be displayed if the user is logged in -->
+</mat-nav-list>

@@ -1,0 +1,14 @@
+.current-training {
+  padding: 30px 0;
+}
+
+p {
+  text-align: center;
+  line-height: 145%;
+}
+
+span {
+  text-transform: uppercase;
+  color: #c2185b;
+  margin-bottom: 20px;
+}
